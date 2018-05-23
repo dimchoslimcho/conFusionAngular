@@ -7,6 +7,9 @@ import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldMo
   MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
   MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 
 import { AppComponent } from './app.component';
@@ -47,7 +50,7 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
     MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
-    MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule, AppRoutingModule, FormsModule
+    MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule, AppRoutingModule, FormsModule, ReactiveFormsModule
   ],
   providers: [ DishService, PromotionService, LeaderService ],
 
