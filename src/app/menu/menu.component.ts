@@ -12,13 +12,12 @@ import { DishService } from '../services/dish.service';
 export class MenuComponent implements OnInit {
 
   dishes: Dish[];
-
+  errMess: string;
 
   constructor(private dishService: DishService, @Inject('BaseURL') private baseURL) { } //diferent approach services and providers!!!
 
   ngOnInit() {  //     this live cycle method will be exexuted by anguler whenever this component is created
-    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
+    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes, errmes => this.errMess = <any>errmes);
   }
-
 
 }
