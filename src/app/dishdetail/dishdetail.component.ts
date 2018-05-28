@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; //Input module is a way to supply information from a component to another component
+import { Component, OnInit, Inject } from '@angular/core'; //Input module is a way to supply information from a component to another component
 
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -39,7 +39,7 @@ export class DishdetailComponent implements OnInit {
   };
 
 
-  constructor( private dishservice: DishService, private location: Location, private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor( private dishservice: DishService, private location: Location, private route: ActivatedRoute, private fb: FormBuilder, @Inject('BaseURL') private baseURL) {
     this.createForm();
   }
 

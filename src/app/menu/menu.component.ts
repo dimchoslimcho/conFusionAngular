@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core'; //with inject you can inject everything from app.module with is provider
 
 import { Dish } from '../shared/dish';
 //import { DISHES } from '../shared/dishes'; //not ideal way
@@ -13,16 +13,12 @@ export class MenuComponent implements OnInit {
 
   dishes: Dish[];
 
-  selectedDish : Dish;
 
-  constructor(private dishService: DishService) { }
+  constructor(private dishService: DishService, @Inject('BaseURL') private baseURL) { } //diferent approach services and providers!!!
 
   ngOnInit() {  //     this live cycle method will be exexuted by anguler whenever this component is created
     this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
   }
 
-  onSelect(dish: Dish){
-    this.selectedDish = dish;
-  }
 
 }
