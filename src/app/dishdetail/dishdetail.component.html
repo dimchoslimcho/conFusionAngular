@@ -44,7 +44,46 @@
         </p>
         <p mat-line><span>-- </span><span>{{comment.author}} </span><span>{{comment.date | date}}</span></p>
       </mat-list-item>
+      <mat-list-item>
+
+        <span [hidden]="addcommentForm.invalid">
+          <p mat-line>{{addcommentForm.value['comment'] }}</p>
+          <p mat-line>
+            <span>{{addcommentForm.value['rating']}} </span><span>Stars</span>
+          </p>
+          <p mat-line><span>-- </span><span>{{addcommentForm.value['author']}}</span></p>
+        </span>
+
+      </mat-list-item>
     </mat-list>
+
+
+    <form novalidate [formGroup]="addcommentForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="author" placeholder="Name" type="text" required>
+          <mat-hint>
+            <span [hidden]="!(formErrors.author)">
+              {{formErrors.author}}
+            </span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-slider formControlName="rating"  min="1" max="5" step="1" tickInterval="1" thumbLabel="true" value="5"></mat-slider>
+      </p>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="comment"  placeholder="Your Comment" rows=12 required></textarea>
+          <mat-hint>
+            <span [hidden]="!(formErrors.comment)">
+              {{formErrors.comment}}
+            </span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="addcommentForm.invalid">Submit</button>
+    </form>
   </div>
 
   <div [hidden]="dish">

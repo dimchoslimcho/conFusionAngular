@@ -63,20 +63,20 @@ export class ContactComponent implements OnInit {
 
     this.feedbackForm.valueChanges.subscribe(data => this.onValueChanged(data));
 
-    this.onValueChanged(); //(re)set form validation messages
+    this.onValueChanged(); //(re)set form validation messages, this is for when the form is created for the first time
   }
 
-  onValueChanged(data?: any) {
-    if(!this.feedbackForm) {return;}
+  onValueChanged(data?: any) {//it will posibly take a parameter, if we call this with no parameter all the form errors filed will be cleared
+    if(!this.feedbackForm) {return;} //if the feedback form has not been created and if this method is called then it should simply return without anything
     const form = this.feedbackForm;
 
     for(const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);
-      if(control && control.dirty && !control.valid) {
+      if(control && control.dirty && !control.valid) {//if control is not null and is dirty and is not valid
         const messages = this.validationMessages[field];
-        for(const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' '
+        for(const key in control.errors) {  //checking to see if there are any errors there, control.error is available beacause to control is assigned object from the form class
+          this.formErrors[field] += messages[key] + ' ' //same naming form erros in the form and in the validation messages (ex required-required...)
         }
       }
     }
