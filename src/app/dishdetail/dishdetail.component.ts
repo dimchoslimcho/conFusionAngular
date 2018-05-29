@@ -19,6 +19,7 @@ export class DishdetailComponent implements OnInit {
 
 
   dish: Dish;
+  dishcopy = null;
   dishIds: number[];
   prev: number;
   next: number;
@@ -48,8 +49,8 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds, errmess => this.errMess = <any>errmess);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id);}, errmess => this.errMess = <any>errmess);
-  }
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id);}, errmess => this.errMess = <any>errmess);
+  }                                           //copy of the dish
 
   createForm() {
     this.addcommentForm = this.fb.group({
@@ -94,8 +95,10 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     let d = new Date();
     let n = d.toISOString();
-    this.dish.comments.push(this.addcommentForm.value);
-    this.dish.comments[this.dish.comments.length-1].date = n;
+    this.dishcopy.comments.push(this.addcommentForm.value);
+    this.dishcopy.comments[this.dish.comments.length-1].date = n;
+    this.dishcopy.save() //save the dish copy object to the server
+      .subscribe(dish => this.dish = dish); //the server confirms that the dish object is done successfully and then we will update our ui t.e. the dish object
     this.addcommentForm.reset({
       comment: '',
       author: '',
