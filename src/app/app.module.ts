@@ -33,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from './shared/restConfig';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 
@@ -46,7 +47,8 @@ import { RestangularConfigFactory } from './shared/restConfig';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
